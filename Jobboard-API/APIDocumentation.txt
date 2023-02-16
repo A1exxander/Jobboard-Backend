@@ -1,0 +1,15 @@
+Api Documentation - 
+
+All responses will be via JSON & contain a keypair val of a key named ValidRequest, which is what you should parse to determine if the request was successful. /error will simply just return a json with a single keypair val called validRequest which will be false
+Login - Takes 2 headers, Email & Password. If valid, will respond with email & accounttype. Will return 4 key pair values, ValidRequest, Email, AccountType, Token // Token will be used for all our remaining API calls
+Register - Takes 2 headers and 1 parameter, Email & Password, and accounttype. Will return the same as login
+Reset passwword - You need 2 API calls, 1st being reset password 2nd being check token. Call /forgot-password which takes a header called email. We will send an email to user a token, and now you must call /check-password-token which takes a header called token. If valid, will email user a new password and return a validRequest json. First request doesnt return anything.
+Availible contracts - /contracts - Should be callable by both contractee & client - Will return a json array consisting of contracts ie the id, contractor name, contract length. No headers / params
+Get a Users active contracts - /contracts/{email} - Takes a token header, email path var, & account_type string param.Will return a json array consisting of currently active contracts - Can take an additional boolean is_completed param to retrieve completed jobs instead of active ones
+Select contract - /select_contract/{jobid} - Takes a token header, jobid path var
+Complete contract - /complete_contract/{jobid} - Takes a token & URL param as well jobid path var
+Create contract -  /create_contract - Takes token header, param int days, and description int. Doesnt return anything.
+Delete contract- / delete_contract- Takes token header & path param var of jobID 
+
+
+
